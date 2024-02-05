@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="refresh" content="5">
+    <title>Seznam článků</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #242424;
+            color: white;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: #f2f2f2; 
+            color: #333; 
+            padding: 1rem;
+            text-align: left; 
+        }
+
+        td {
+            border-bottom: 1px solid #ddd; 
+            padding: 1rem; 
+        }
+        
+        tr:hover {
+            background-color: #f05e16; 
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            color: black;
+        }
+        caption a{
+            display: block;
+            padding: 1rem;
+            font-size: 2rem;
+            color: #f05e16;
+        }
+        caption a:hover{
+            color: white;
+        }   
+        tr.add{
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption><a href = "{% url 'article-list' %}">Seznam článků</a></caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Název</th>
+            <th>Autor</th>
+            <th>Vytvořeno</th>
+            <th>Aktualizováno</th>
+            <th>Upravit</th>
+            <th>Odstranit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for article in articles %}
+          <tr>
+            <td>{{ article.id }}</td>
+            <td><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></td>
+            <td>{{ article.author }}</td>
+            <td>{{ article.created_at }}</td>
+            <td>{{ article.updated_at }}</td>
+            <td><a href="{% url 'article-update' article.id %}">Upravit</a></td>
+            <td><a href="{% url 'article-delete' article.id %}">Odstranit</a></td>
+          </tr>
+          {% endfor %}
+          <tr class="add" onclick="location.href='{% url 'article-create' %}'">
+            <td colspan="7" style="text-align: center;">+</td>
+          </tr>
+        </tbody>
+      </table>
+</body>
+</html>

@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "blog-project"
+version = "0.1.0"
+description = ""
+authors = ["JanPolnicky <jenikpolnicky@seznam.cz>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = ">=4.1"
+djangorestframework = "^3.14.0"
+django-filter = "^23.5"
+pip = "^24.0"
+install = "^1.3.5"
+psycopg2-binary = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
